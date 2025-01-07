@@ -8,20 +8,31 @@ const router = express.Router();
 
 // Define item-related routes
 import itemActions from "./modules/item/itemActions";
-import programActions from "./modules/item/program/programActions";
 
 router.get("/api/items", itemActions.browse);
 router.get("/api/items/:id", itemActions.read);
 router.post("/api/items", itemActions.add);
+
+// Define program-related routes
+import programActions from "./modules/program/programActions";
+
 router.get("/api/programs", programActions.browse);
++router.get("/api/programs/:id", programActions.read);
 
 /* ************************************************************************* */
-import type { RequestHandler } from "express";
 
-const sayWelcome: RequestHandler = (req, res) => {
-  res.send("Welcome to Wild Series  DS !");
-};
+// Declaration of a "Welcome" route
 
-router.get("/", sayWelcome);
+import sayActions from "./modules/say/sayActions";
+
+router.get("/", sayActions.sayWelcome);
+
+// Define program-related routes
+
+import categoryActions from "./modules/category/categoryActions";
+
+router.get("/api/categories", categoryActions.browse);
++router.get("/api/categories/:id", categoryActions.read);
+/* ************************************************************************* */
 
 export default router;
